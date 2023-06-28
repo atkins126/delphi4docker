@@ -1,0 +1,28 @@
+#Download Delphi base image.
+FROM lmbelo/delphi:0.0.1-alpha
+
+#Labeling
+LABEL maintainer="lucas.belo@live.com"
+LABEL version="0.0.1-alpha"
+LABEL description="This is a personal Docker image for Delphi compilers"
+
+#ARG USER=delphi
+#ARG UID=1000
+#ARG GID=1000
+#ARG PW=delphi
+
+#Specifying password (unsafe)
+#RUN useradd -m ${USER} --uid=${UID} && echo "${USER}:${PW}" | \
+#	chpasswd
+
+#Using host encrypted password
+#COPY /etc/group /etc/group
+#COPY /etc/passwd /etc/passwd
+#COPY /etc/shadow /etc/shadow
+
+#Setup default user when enter docker container
+#USER ${UID}:${GID}
+#WORKDIR /home/${USER}
+
+#Copy host wine
+ADD hostwine.tar.gz /root/.wine

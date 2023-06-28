@@ -1,0 +1,48 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{57733C34-63D3-4061-972F-D37C8CE09B2E}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="delphi4dockersrv.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="delphi4dockercli.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="delphi4dockersrv">
+        <MSBuild Projects="delphi4dockersrv.dproj"/>
+    </Target>
+    <Target Name="delphi4dockersrv:Clean">
+        <MSBuild Projects="delphi4dockersrv.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="delphi4dockersrv:Make">
+        <MSBuild Projects="delphi4dockersrv.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="delphi4dockercli">
+        <MSBuild Projects="delphi4dockercli.dproj"/>
+    </Target>
+    <Target Name="delphi4dockercli:Clean">
+        <MSBuild Projects="delphi4dockercli.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="delphi4dockercli:Make">
+        <MSBuild Projects="delphi4dockercli.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="delphi4dockersrv;delphi4dockercli"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="delphi4dockersrv:Clean;delphi4dockercli:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="delphi4dockersrv:Make;delphi4dockercli:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>
