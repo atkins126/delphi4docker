@@ -291,7 +291,7 @@
             <Form>Delphi4Docker</Form>
             <FormType>fmx</FormType>
         </DCCReference>
-        <DCCReference Include="Simple.Socket.pas"/>
+        <DCCReference Include="Socket.Data.Frame.pas"/>
         <DCCReference Include="Routines.Windows.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>

@@ -4,7 +4,7 @@ uses
   System.StartUpCopy,
   FMX.Forms,
   Form.Delphi4Docker in 'Form.Delphi4Docker.pas' {Delphi4Docker},
-  Simple.Socket in 'Simple.Socket.pas',
+  Socket.Data.Frame in 'Socket.Data.Frame.pas',
   Routines.Windows in 'Routines.Windows.pas';
 
 {$R *.res}

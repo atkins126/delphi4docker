@@ -302,7 +302,7 @@
             <FormType>fmx</FormType>
         </DCCReference>
         <DCCReference Include="Common.Paths.pas"/>
-        <DCCReference Include="Simple.Socket.pas"/>
+        <DCCReference Include="Socket.Data.Frame.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

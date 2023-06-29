@@ -11,7 +11,7 @@ uses
   System.Threading, FireDAC.Stan.Intf, FireDAC.Stan.Option, FireDAC.Stan.Param,
   FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf, FireDAC.DApt.Intf,
   Data.DB, FireDAC.Comp.DataSet, FireDAC.Comp.Client, FireDAC.Stan.StorageJSON,
-  Simple.Socket;
+  Socket.Data.Frame;
 
 type
   TDelphi4Docker = class(TForm)
@@ -134,9 +134,9 @@ type
     TStatusSet = set of TStatus;
   private
     {$IFDEF SERVER}
-    FServer: TSimpleSocket;
+    FServer: TSocketDataFrame;
     {$ENDIF SERVER}
-    FClient: TSimpleSocket;
+    FClient: TSocketDataFrame;
     FTask: ITask;
     FStatus: TStatusSet;
     FPack: TZipFile;
@@ -211,7 +211,7 @@ begin
   tiUnpack.Visible := false;
   tiPack.Visible := true;
   tcPackUnpack.ActiveTab := tiPack;
-  FServer := TSimpleSocket.Create();
+  FServer := TSocketDataFrame.Create();
   FServer.Listen(TCommonInfo.GetIpAddress(), SERVER_PORT);
   TPathBuilder.Delegator := function: IEnvironmentPath begin
     Result := TLocalEnvironmentPath.Create();
@@ -222,7 +222,7 @@ begin
   tiPack.Visible := false;
   tiUnpack.Visible := true;
   tcPackUnpack.ActiveTab := tiUnpack;
-  FClient := TSimpleSocket.Create();
+  FClient := TSocketDataFrame.Create();
   TPathBuilder.Delegator := function: IEnvironmentPath begin
     Result := TWineHostEnvironmentPath.Create(
       edtWinePrefix.Text, edtWineUserName.Text);
@@ -309,7 +309,7 @@ end;
 function TDelphi4Docker.Connect: boolean;
 begin
   {$IFDEF SERVER}
-  FClient := FServer.Accept(10000) as TSimpleSocket;
+  FClient := FServer.Accept(10000) as TSocketDataFrame;
   Result := Assigned(FClient);
   {$ENDIF SERVER}
 
@@ -495,13 +495,9 @@ begin
       TStatus.Sending,
       procedure() begin
         if Connect() then
-          try
-            FClient.SendData(
-              TCommonPath.GetBundleFile(),
-              TVisualUpdate.GetProgressBar(Sender as TPresentedControl));
-          finally
-            Disconnect();
-          end;
+          FClient.SendData(
+            TCommonPath.GetBundleFile(),
+            TVisualUpdate.GetProgressBar(Sender as TPresentedControl));
       end);
   end);
 end;

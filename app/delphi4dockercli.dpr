@@ -5,7 +5,7 @@ uses
   FMX.Forms,
   Form.Delphi4Docker in 'Form.Delphi4Docker.pas' {Delphi4Docker},
   Common.Paths in 'Common.Paths.pas',
-  Simple.Socket in 'Simple.Socket.pas';
+  Socket.Data.Frame in 'Socket.Data.Frame.pas';
 
 {$R *.res}
 
