@@ -33,6 +33,7 @@ type
       const EOM_MARKER: byte = $FF;
     public
       EOM: Byte;
+      //We can add a checksum here
     end;
   private
     FCancelled: boolean;
@@ -151,7 +152,8 @@ begin
                 if (LRemainingDataLength > 0) then begin
                   SetLength(Result, LRemainingDataLength);
                   TArray.Copy<Byte>(LData, Result, 0, 0, Length(Result));
-                end;
+                end else
+                  Result := nil;
                 //Bufferize extra message until we reach out epilogue
                 SetLength(LExtraBuffer, LExtraContentLength);
                 TArray.Copy<Byte>(LData, LExtraBuffer, Length(LData) - LExtraContentLength, 0, LExtraContentLength);
@@ -202,7 +204,7 @@ begin
 
   //Send prologue
   if not (Self.Send(LPrologue, SizeOf(TMessagePrologue)) = SizeOf(TMessagePrologue)) then
-    raise Exception.Create('Invalid message header');
+    raise Exception.Create('Invalid message prologue');
 
   if not Assigned(ATransmitter) then
     Exit;

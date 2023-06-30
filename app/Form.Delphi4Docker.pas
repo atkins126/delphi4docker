@@ -861,18 +861,12 @@ function TDelphi4Docker.UnzipEdit(const AZipFileName, AArchiveFileName: string;
   const AEdit: TEdit): ITask;
 begin
   Result := UpdateEdit(AEdit, procedure() begin
-    var LFileName := TPath.Combine(TCommonPath.GetBundleFolder(), AArchiveFileName);
     try
       UnzipFileContents(
         AZipFileName,
-        LFileName,
+        AArchiveFileName,
         AEdit.Text,
         TVisualUpdate.GetProgressBar(AEdit));
-
-      if (TStatus.Cancelled in FStatus) then
-        Exit;
-
-      AddToPack(LFileName);
     except
       on E: Exception do
         Application.ShowException(E);
