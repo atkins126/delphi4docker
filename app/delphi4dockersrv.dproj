@@ -292,7 +292,7 @@
             <FormType>fmx</FormType>
         </DCCReference>
         <DCCReference Include="Socket.Data.Frame.pas"/>
-        <DCCReference Include="Routines.Windows.pas"/>
+        <DCCReference Include="Routines.Platform.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

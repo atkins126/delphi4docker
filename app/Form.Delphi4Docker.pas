@@ -184,7 +184,7 @@ implementation
 uses
   System.IOUtils, System.SyncObjs, System.Net.Socket, System.Rtti,
   FMX.DialogService,
-  Routines.Windows, Common.Paths;
+  Routines.Platform, Common.Paths;
 
 const
   SERVER_PORT = 10031;
@@ -690,20 +690,15 @@ function TDelphi4Docker.ZipEdit(const AArchiveFileName: string;
 begin
   Result := UpdateEdit(AEdit, procedure() begin
     var LFileName := TPath.Combine(TCommonPath.GetBundleFolder(), AArchiveFileName);
-    try
-      ZipDirectoryContents(
-        LFileName,
-        AEdit.Text,
-        TVisualUpdate.GetProgressBar(AEdit));
+    ZipDirectoryContents(
+      LFileName,
+      AEdit.Text,
+      TVisualUpdate.GetProgressBar(AEdit));
 
-      if (TStatus.Cancelled in FStatus) then
-        Exit;
+    if (TStatus.Cancelled in FStatus) then
+      Exit;
 
-      AddToPack(LFileName);
-    except
-      on E: Exception do
-        Application.ShowException(E);
-    end;
+    AddToPack(LFileName);
   end);
 end;
 
@@ -781,14 +776,14 @@ begin
         if (TStatus.Cancelled in FStatus) then
           Exit;
 
-        TThread.Synchronize(TThread.Current, procedure() begin
-          ShowMessage('Package is ready to distribute.');
-        end);
-
         {$IFDEF MSWINDOWS}
         TWinOperation.OpenExplorer(
           TPath.GetDirectoryName(TCommonPath.GetBundleFile()));
         {$ENDIF MSWINDOWS}
+
+        TThread.Synchronize(TThread.Current, procedure() begin
+          ShowMessage('Package is ready to distribute.');
+        end);
       end);
   end);
 end;
@@ -809,6 +804,11 @@ begin
             LZip.Open(TCommonPath.GetBundleFile(), TZipMode.zmRead);
             LZip.Extract(EMBT_REGISTRY_FILE_NAME, TCommonPath.GetBundleFolder());
             LZip.Extract(DEFS_FILE_NAME, TCommonPath.GetBundleFolder());
+
+            //Execute registry
+            {$IFDEF LINUX}
+            TLinuxOperation.ExecuteEmbarcaderoRegistry(TCommonPath.GetRegistryFile());
+            {$ENDIF LINUX}
           finally
             LZip.Free();
           end;
@@ -861,16 +861,11 @@ function TDelphi4Docker.UnzipEdit(const AZipFileName, AArchiveFileName: string;
   const AEdit: TEdit): ITask;
 begin
   Result := UpdateEdit(AEdit, procedure() begin
-    try
-      UnzipFileContents(
-        AZipFileName,
-        AArchiveFileName,
-        AEdit.Text,
-        TVisualUpdate.GetProgressBar(AEdit));
-    except
-      on E: Exception do
-        Application.ShowException(E);
-    end;
+    UnzipFileContents(
+      AZipFileName,
+      AArchiveFileName,
+      AEdit.Text,
+      TVisualUpdate.GetProgressBar(AEdit));
   end);
 end;
 
