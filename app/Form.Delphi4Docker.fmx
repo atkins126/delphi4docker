@@ -18,7 +18,7 @@ object Delphi4Docker: TDelphi4Docker
     Size.Width = 492.000000000000000000
     Size.Height = 414.000000000000000000
     Size.PlatformDefault = False
-    TabIndex = 0
+    TabIndex = 1
     TabOrder = 0
     TabPosition = PlatformDefault
     Sizes = (
@@ -30,7 +30,7 @@ object Delphi4Docker: TDelphi4Docker
       CustomIcon = <
         item
         end>
-      IsSelected = True
+      IsSelected = False
       Size.Width = 44.000000000000000000
       Size.Height = 26.000000000000000000
       Size.PlatformDefault = False
@@ -57,12 +57,12 @@ object Delphi4Docker: TDelphi4Docker
           Size.Height = 17.000000000000000000
           Size.PlatformDefault = False
           Text = 'Embarcadero Folder:'
-          TabOrder = 7
+          TabOrder = 6
         end
         object edtEmbtFolder: TEdit
           Touch.InteractiveGestures = [LongTap, DoubleTap]
           Align = Client
-          TabOrder = 3
+          TabOrder = 0
           Size.Width = 482.000000000000000000
           Size.Height = 22.000000000000000000
           Size.PlatformDefault = False
@@ -108,12 +108,12 @@ object Delphi4Docker: TDelphi4Docker
           Size.Height = 17.000000000000000000
           Size.PlatformDefault = False
           Text = 'Embarcadero ProgramData Folder:'
-          TabOrder = 11
+          TabOrder = 10
         end
         object edtProgramDataFolder: TEdit
           Touch.InteractiveGestures = [LongTap, DoubleTap]
           Align = Client
-          TabOrder = 4
+          TabOrder = 1
           Size.Width = 482.000000000000000000
           Size.Height = 22.000000000000000000
           Size.PlatformDefault = False
@@ -160,7 +160,7 @@ object Delphi4Docker: TDelphi4Docker
           Size.Width = 80.000000000000000000
           Size.Height = 29.000000000000000000
           Size.PlatformDefault = False
-          TabOrder = 9
+          TabOrder = 7
           Text = 'Pack'
           OnClick = btnPackClick
         end
@@ -188,7 +188,7 @@ object Delphi4Docker: TDelphi4Docker
           Size.Width = 80.000000000000000000
           Size.Height = 29.000000000000000000
           Size.PlatformDefault = False
-          TabOrder = 10
+          TabOrder = 9
           Text = 'Send'
           OnClick = btnSendClick
           object ProgressBar13: TProgressBar
@@ -219,7 +219,7 @@ object Delphi4Docker: TDelphi4Docker
           TextSettings.HorzAlign = Center
           TextSettings.VertAlign = Leading
           Text = '<<your ip here>>'
-          TabOrder = 7
+          TabOrder = 10
         end
       end
       object Layout4: TLayout
@@ -241,12 +241,12 @@ object Delphi4Docker: TDelphi4Docker
           Size.Height = 17.000000000000000000
           Size.PlatformDefault = False
           Text = 'Eclipse Adoptium Folder:'
-          TabOrder = 8
+          TabOrder = 7
         end
         object edtEclipseAdoptiumFolder: TEdit
           Touch.InteractiveGestures = [LongTap, DoubleTap]
           Align = Client
-          TabOrder = 4
+          TabOrder = 5
           Size.Width = 482.000000000000000000
           Size.Height = 22.000000000000000000
           Size.PlatformDefault = False
@@ -343,12 +343,12 @@ object Delphi4Docker: TDelphi4Docker
           Size.Height = 17.000000000000000000
           Size.PlatformDefault = False
           Text = 'Embarcadero Public Documents Folder:'
-          TabOrder = 10
+          TabOrder = 9
         end
         object edtPublicDocumentsFolder: TEdit
           Touch.InteractiveGestures = [LongTap, DoubleTap]
           Align = Client
-          TabOrder = 4
+          TabOrder = 3
           Size.Width = 482.000000000000000000
           Size.Height = 22.000000000000000000
           Size.PlatformDefault = False
@@ -399,7 +399,7 @@ object Delphi4Docker: TDelphi4Docker
         object edtAppDataRoamingFolder: TEdit
           Touch.InteractiveGestures = [LongTap, DoubleTap]
           Align = Client
-          TabOrder = 4
+          TabOrder = 2
           Size.Width = 482.000000000000000000
           Size.Height = 22.000000000000000000
           Size.PlatformDefault = False
@@ -445,12 +445,12 @@ object Delphi4Docker: TDelphi4Docker
           Size.Height = 17.000000000000000000
           Size.PlatformDefault = False
           Text = 'Test Projects Folder:'
-          TabOrder = 8
+          TabOrder = 7
         end
         object edtTestProjectsFolder: TEdit
           Touch.InteractiveGestures = [LongTap, DoubleTap]
           Align = Client
-          TabOrder = 4
+          TabOrder = 6
           Size.Width = 482.000000000000000000
           Size.Height = 22.000000000000000000
           Size.PlatformDefault = False
@@ -483,7 +483,7 @@ object Delphi4Docker: TDelphi4Docker
       CustomIcon = <
         item
         end>
-      IsSelected = False
+      IsSelected = True
       Size.Width = 60.000000000000000000
       Size.Height = 26.000000000000000000
       Size.PlatformDefault = False
@@ -492,7 +492,7 @@ object Delphi4Docker: TDelphi4Docker
       Text = 'Unpack'
       ExplicitSize.cx = 72.000000000000000000
       ExplicitSize.cy = 26.000000000000000000
-      object Layout8: TLayout
+      object loEmbtFolder: TLayout
         Align = Top
         Padding.Left = 5.000000000000000000
         Padding.Top = 2.000000000000000000
@@ -501,7 +501,7 @@ object Delphi4Docker: TDelphi4Docker
         Size.Width = 492.000000000000000000
         Size.Height = 43.000000000000000000
         Size.PlatformDefault = False
-        TabOrder = 8
+        TabOrder = 0
         object Label10: TLabel
           Align = Top
           Position.X = 5.000000000000000000
@@ -510,12 +510,12 @@ object Delphi4Docker: TDelphi4Docker
           Size.Height = 17.000000000000000000
           Size.PlatformDefault = False
           Text = 'Embarcadero Folder:'
-          TabOrder = 7
+          TabOrder = 6
         end
         object edtEmbarcaderoDestFolder: TEdit
           Touch.InteractiveGestures = [LongTap, DoubleTap]
           Align = Client
-          TabOrder = 3
+          TabOrder = 0
           Size.Width = 482.000000000000000000
           Size.Height = 22.000000000000000000
           Size.PlatformDefault = False
@@ -542,7 +542,7 @@ object Delphi4Docker: TDelphi4Docker
           end
         end
       end
-      object Layout9: TLayout
+      object loEmbtProgramDataFolder: TLayout
         Align = Top
         Padding.Left = 5.000000000000000000
         Padding.Top = 2.000000000000000000
@@ -552,7 +552,7 @@ object Delphi4Docker: TDelphi4Docker
         Size.Width = 492.000000000000000000
         Size.Height = 43.000000000000000000
         Size.PlatformDefault = False
-        TabOrder = 7
+        TabOrder = 1
         object Label11: TLabel
           Align = Top
           Position.X = 5.000000000000000000
@@ -561,12 +561,12 @@ object Delphi4Docker: TDelphi4Docker
           Size.Height = 17.000000000000000000
           Size.PlatformDefault = False
           Text = 'Embarcadero ProgramData Folder:'
-          TabOrder = 11
+          TabOrder = 10
         end
         object edtEmbarcaderoProgramDataDestFolder: TEdit
           Touch.InteractiveGestures = [LongTap, DoubleTap]
           Align = Client
-          TabOrder = 4
+          TabOrder = 1
           Size.Width = 482.000000000000000000
           Size.Height = 22.000000000000000000
           Size.PlatformDefault = False
@@ -593,13 +593,13 @@ object Delphi4Docker: TDelphi4Docker
           end
         end
       end
-      object Layout10: TLayout
+      object loSettings: TLayout
         Align = Top
         Position.Y = 301.000000000000000000
         Size.Width = 492.000000000000000000
         Size.Height = 43.000000000000000000
         Size.PlatformDefault = False
-        TabOrder = 6
+        TabOrder = 7
         object Layout16: TLayout
           Align = Left
           Padding.Left = 5.000000000000000000
@@ -609,7 +609,7 @@ object Delphi4Docker: TDelphi4Docker
           Size.Width = 250.000000000000000000
           Size.Height = 43.000000000000000000
           Size.PlatformDefault = False
-          TabOrder = 11
+          TabOrder = 8
           object Label7: TLabel
             Align = Top
             Position.X = 5.000000000000000000
@@ -618,12 +618,12 @@ object Delphi4Docker: TDelphi4Docker
             Size.Height = 17.000000000000000000
             Size.PlatformDefault = False
             Text = 'Host Addr:'
-            TabOrder = 5
+            TabOrder = 4
           end
           object edtHostAddr: TEdit
             Touch.InteractiveGestures = [LongTap, DoubleTap]
             Align = Client
-            TabOrder = 4
+            TabOrder = 7
             Size.Width = 240.000000000000000000
             Size.Height = 22.000000000000000000
             Size.PlatformDefault = False
@@ -639,7 +639,7 @@ object Delphi4Docker: TDelphi4Docker
           Size.Width = 121.000000000000000000
           Size.Height = 43.000000000000000000
           Size.PlatformDefault = False
-          TabOrder = 10
+          TabOrder = 9
           object Label6: TLabel
             Align = Top
             Position.X = 5.000000000000000000
@@ -653,7 +653,7 @@ object Delphi4Docker: TDelphi4Docker
           object edtWinePrefix: TEdit
             Touch.InteractiveGestures = [LongTap, DoubleTap]
             Align = Client
-            TabOrder = 4
+            TabOrder = 8
             Text = '.wine'
             Size.Width = 111.000000000000000000
             Size.Height = 22.000000000000000000
@@ -671,7 +671,7 @@ object Delphi4Docker: TDelphi4Docker
           Size.Width = 121.000000000000000000
           Size.Height = 43.000000000000000000
           Size.PlatformDefault = False
-          TabOrder = 9
+          TabOrder = 10
           object Label5: TLabel
             Align = Top
             Position.X = 5.000000000000000000
@@ -685,7 +685,7 @@ object Delphi4Docker: TDelphi4Docker
           object edtWineUserName: TEdit
             Touch.InteractiveGestures = [LongTap, DoubleTap]
             Align = Client
-            TabOrder = 4
+            TabOrder = 9
             Size.Width = 111.000000000000000000
             Size.Height = 22.000000000000000000
             Size.PlatformDefault = False
@@ -693,7 +693,7 @@ object Delphi4Docker: TDelphi4Docker
           end
         end
       end
-      object Layout11: TLayout
+      object loEclipseAdoptiumFolder: TLayout
         Align = Top
         Padding.Left = 5.000000000000000000
         Padding.Top = 2.000000000000000000
@@ -703,7 +703,7 @@ object Delphi4Docker: TDelphi4Docker
         Size.Width = 492.000000000000000000
         Size.Height = 43.000000000000000000
         Size.PlatformDefault = False
-        TabOrder = 4
+        TabOrder = 5
         object Label12: TLabel
           Align = Top
           Position.X = 5.000000000000000000
@@ -712,12 +712,12 @@ object Delphi4Docker: TDelphi4Docker
           Size.Height = 17.000000000000000000
           Size.PlatformDefault = False
           Text = 'Eclipse Adoptium Folder:'
-          TabOrder = 8
+          TabOrder = 7
         end
         object edtEclipseAdoptiumDestFolder: TEdit
           Touch.InteractiveGestures = [LongTap, DoubleTap]
           Align = Client
-          TabOrder = 4
+          TabOrder = 5
           Size.Width = 482.000000000000000000
           Size.Height = 22.000000000000000000
           Size.PlatformDefault = False
@@ -744,7 +744,7 @@ object Delphi4Docker: TDelphi4Docker
           end
         end
       end
-      object Layout12: TLayout
+      object loUserDocsFolder: TLayout
         Align = Top
         Padding.Left = 5.000000000000000000
         Padding.Top = 2.000000000000000000
@@ -754,7 +754,7 @@ object Delphi4Docker: TDelphi4Docker
         Size.Width = 492.000000000000000000
         Size.Height = 43.000000000000000000
         Size.PlatformDefault = False
-        TabOrder = 2
+        TabOrder = 4
         object Label13: TLabel
           Align = Top
           Position.X = 5.000000000000000000
@@ -763,7 +763,7 @@ object Delphi4Docker: TDelphi4Docker
           Size.Height = 17.000000000000000000
           Size.PlatformDefault = False
           Text = 'Embarcadero User Documents Folder:'
-          TabOrder = 9
+          TabOrder = 8
         end
         object edtEmbarcaderoUserDocumentsDestFolder: TEdit
           Touch.InteractiveGestures = [LongTap, DoubleTap]
@@ -795,7 +795,7 @@ object Delphi4Docker: TDelphi4Docker
           end
         end
       end
-      object Layout13: TLayout
+      object loEmbtPublicDocsFolder: TLayout
         Align = Top
         Padding.Left = 5.000000000000000000
         Padding.Top = 2.000000000000000000
@@ -805,7 +805,7 @@ object Delphi4Docker: TDelphi4Docker
         Size.Width = 492.000000000000000000
         Size.Height = 43.000000000000000000
         Size.PlatformDefault = False
-        TabOrder = 1
+        TabOrder = 3
         object Label14: TLabel
           Align = Top
           Position.X = 5.000000000000000000
@@ -814,12 +814,12 @@ object Delphi4Docker: TDelphi4Docker
           Size.Height = 17.000000000000000000
           Size.PlatformDefault = False
           Text = 'Embarcadero Public Documents Folder:'
-          TabOrder = 10
+          TabOrder = 9
         end
         object edtEmbarcaderoPublicDocumentsDestFolder: TEdit
           Touch.InteractiveGestures = [LongTap, DoubleTap]
           Align = Client
-          TabOrder = 4
+          TabOrder = 3
           Size.Width = 482.000000000000000000
           Size.Height = 22.000000000000000000
           Size.PlatformDefault = False
@@ -846,7 +846,7 @@ object Delphi4Docker: TDelphi4Docker
           end
         end
       end
-      object Layout14: TLayout
+      object loEmbtUserAppDataRoamingFolder: TLayout
         Align = Top
         Padding.Left = 5.000000000000000000
         Padding.Top = 2.000000000000000000
@@ -856,7 +856,7 @@ object Delphi4Docker: TDelphi4Docker
         Size.Width = 492.000000000000000000
         Size.Height = 43.000000000000000000
         Size.PlatformDefault = False
-        TabOrder = 0
+        TabOrder = 2
         object Label15: TLabel
           Align = Top
           Position.X = 5.000000000000000000
@@ -870,7 +870,7 @@ object Delphi4Docker: TDelphi4Docker
         object edtEmbarcaderoAppDataRoamingDestFolder: TEdit
           Touch.InteractiveGestures = [LongTap, DoubleTap]
           Align = Client
-          TabOrder = 4
+          TabOrder = 2
           Size.Width = 482.000000000000000000
           Size.Height = 22.000000000000000000
           Size.PlatformDefault = False
@@ -897,7 +897,7 @@ object Delphi4Docker: TDelphi4Docker
           end
         end
       end
-      object Layout15: TLayout
+      object loButtons: TLayout
         Align = Top
         Padding.Left = 5.000000000000000000
         Padding.Top = 2.000000000000000000
@@ -907,7 +907,7 @@ object Delphi4Docker: TDelphi4Docker
         Size.Width = 492.000000000000000000
         Size.Height = 43.000000000000000000
         Size.PlatformDefault = False
-        TabOrder = 5
+        TabOrder = 8
         object btnReceive: TButton
           Align = Left
           Margins.Top = 5.000000000000000000
@@ -917,7 +917,7 @@ object Delphi4Docker: TDelphi4Docker
           Size.Width = 80.000000000000000000
           Size.Height = 29.000000000000000000
           Size.PlatformDefault = False
-          TabOrder = 7
+          TabOrder = 10
           Text = 'Receive'
           OnClick = btnReceiveClick
           object ProgressBar14: TProgressBar
@@ -944,7 +944,7 @@ object Delphi4Docker: TDelphi4Docker
           Size.Width = 150.000000000000000000
           Size.Height = 29.000000000000000000
           Size.PlatformDefault = False
-          TabOrder = 4
+          TabOrder = 13
           Text = 'Unpack and Setup'
           OnClick = btnUnpackAndSetupClick
         end
@@ -958,12 +958,12 @@ object Delphi4Docker: TDelphi4Docker
           Size.Width = 80.000000000000000000
           Size.Height = 29.000000000000000000
           Size.PlatformDefault = False
-          TabOrder = 8
+          TabOrder = 11
           Text = 'Cancel'
           OnClick = btnCancelClick
         end
       end
-      object Layout20: TLayout
+      object loTestProjectsFolder: TLayout
         Align = Top
         Padding.Left = 5.000000000000000000
         Padding.Top = 2.000000000000000000
@@ -973,7 +973,7 @@ object Delphi4Docker: TDelphi4Docker
         Size.Width = 492.000000000000000000
         Size.Height = 43.000000000000000000
         Size.PlatformDefault = False
-        TabOrder = 3
+        TabOrder = 6
         object Label17: TLabel
           Align = Top
           Position.X = 5.000000000000000000
@@ -982,12 +982,12 @@ object Delphi4Docker: TDelphi4Docker
           Size.Height = 17.000000000000000000
           Size.PlatformDefault = False
           Text = 'Test Projects Folder:'
-          TabOrder = 8
+          TabOrder = 7
         end
         object edtTestProjectsDestFolder: TEdit
           Touch.InteractiveGestures = [LongTap, DoubleTap]
           Align = Client
-          TabOrder = 4
+          TabOrder = 6
           Size.Width = 482.000000000000000000
           Size.Height = 22.000000000000000000
           Size.PlatformDefault = False

@@ -52,38 +52,38 @@ type
     edtEclipseAdoptiumFolder: TEdit;
     SearchEditButton4: TSearchEditButton;
     ProgressBar4: TProgressBar;
-    Layout8: TLayout;
+    loEmbtFolder: TLayout;
     Label10: TLabel;
     edtEmbarcaderoDestFolder: TEdit;
     SearchEditButton7: TSearchEditButton;
     ProgressBar7: TProgressBar;
-    Layout9: TLayout;
+    loEmbtProgramDataFolder: TLayout;
     Label11: TLabel;
     edtEmbarcaderoProgramDataDestFolder: TEdit;
     SearchEditButton8: TSearchEditButton;
     ProgressBar8: TProgressBar;
-    Layout10: TLayout;
-    Layout11: TLayout;
+    loSettings: TLayout;
+    loEclipseAdoptiumFolder: TLayout;
     Label12: TLabel;
     edtEclipseAdoptiumDestFolder: TEdit;
     SearchEditButton9: TSearchEditButton;
     ProgressBar9: TProgressBar;
-    Layout12: TLayout;
+    loUserDocsFolder: TLayout;
     Label13: TLabel;
     edtEmbarcaderoUserDocumentsDestFolder: TEdit;
     SearchEditButton10: TSearchEditButton;
     ProgressBar10: TProgressBar;
-    Layout13: TLayout;
+    loEmbtPublicDocsFolder: TLayout;
     Label14: TLabel;
     edtEmbarcaderoPublicDocumentsDestFolder: TEdit;
     SearchEditButton11: TSearchEditButton;
     ProgressBar11: TProgressBar;
-    Layout14: TLayout;
+    loEmbtUserAppDataRoamingFolder: TLayout;
     Label15: TLabel;
     edtEmbarcaderoAppDataRoamingDestFolder: TEdit;
     SearchEditButton12: TSearchEditButton;
     ProgressBar12: TProgressBar;
-    Layout15: TLayout;
+    loButtons: TLayout;
     btnPack: TButton;
     btnCancel: TButton;
     btnSend: TButton;
@@ -106,7 +106,7 @@ type
     edtTestProjectsFolder: TEdit;
     SearchEditButton13: TSearchEditButton;
     ProgressBar15: TProgressBar;
-    Layout20: TLayout;
+    loTestProjectsFolder: TLayout;
     Label17: TLabel;
     edtTestProjectsDestFolder: TEdit;
     SearchEditButton14: TSearchEditButton;
@@ -164,6 +164,10 @@ type
     //Operations
     procedure DoOperation(const AStatus: TStatus; const AProc: TProc);
     procedure DoCancel();
+    //Scripts
+    procedure CreateMSBuildConfigScript;
+    //Logs
+    procedure Log(AMessage: string);
   public
     { Public declarations }
   end;
@@ -202,6 +206,9 @@ end;
 
 procedure TDelphi4Docker.FormCreate(Sender: TObject);
 begin
+  if TFile.Exists(TCommonPath.GetLogFile()) then
+    TFile.Delete(TCommonPath.GetLogFile());
+
   FPack := TZipFile.Create();
   FStatus := [];
   UpdateComponents();
@@ -248,6 +255,14 @@ begin
   FClient.Free;
   {$ENDIF CLIENT}
   FPack.Free();
+end;
+
+procedure TDelphi4Docker.Log(AMessage: string);
+begin
+  AMessage := Format('%s: %s', [DateTimeToStr(Now()), AMessage]) + sLineBreak;
+  TThread.Synchronize(TThread.Current, procedure() begin
+    TFile.AppendAllText(TCommonPath.GetLogFile(), AMessage);
+  end);
 end;
 
 procedure TDelphi4Docker.FillForm;
@@ -329,6 +344,28 @@ begin
   {$ENDIF SERVER}
 end;
 
+procedure TDelphi4Docker.CreateMSBuildConfigScript;
+begin
+  if not TDirectory.Exists(TPathBuilder.Build.EmbarcaderoUserProjectsPath()) then begin
+    Log(Format('Folder "%s" not found.', [TPathBuilder.Build.EmbarcaderoUserProjectsPath()]));
+    Exit;
+  end;
+
+  var LMSBuildFile := TPath.Combine(
+    TPathBuilder.Build.EmbarcaderoUserProjectsPath(),
+    'msbuildconfig.bat');
+
+  if TFile.Exists(LMSBuildFile) then
+    TFile.Delete(LMSBuildFile);
+
+  TFile.WriteAllLines(LMSBuildFile, [
+    'ECHO OFF',
+    'CALL "C:\Program Files (x86)\Embarcadero\Studio\22.0\bin\rsvars.bat"'
+  ]);
+
+  Log(Format('File "%s" created.', [LMSBuildFile]));
+end;
+
 procedure TDelphi4Docker.Disconnect;
 begin
   if Assigned(FClient) then
@@ -352,6 +389,7 @@ begin
   if (TStatus.Receiving in FStatus) then
     FClient.Cancelled := true;
   {$ENDIF CLIENT}
+  Log('Operation cancelled by user.');
 end;
 
 procedure TDelphi4Docker.DoOperation(const AStatus: TStatus;
@@ -469,6 +507,7 @@ end;
 
 procedure TDelphi4Docker.btnReceiveClick(Sender: TObject);
 begin
+  Log('----------|||| RECEIVING ||||----------');
   FTask := TTask.Run(procedure() begin
     DoOperation(
       TStatus.Receiving,
@@ -490,6 +529,7 @@ end;
 
 procedure TDelphi4Docker.btnSendClick(Sender: TObject);
 begin
+  Log('----------|||| SENDING ||||----------');
   FTask := TTask.Run(procedure() begin
     DoOperation(
       TStatus.Sending,
@@ -531,11 +571,13 @@ end;
 
 procedure TDelphi4Docker.btnPackClick(Sender: TObject);
 begin
+  Log('----------|||| PACKING ||||----------');
   PackDirectly();
 end;
 
 procedure TDelphi4Docker.btnUnpackAndSetupClick(Sender: TObject);
 begin
+  Log('----------|||| UNPACKING ||||----------');
   UnpackDirectly();
 end;
 
@@ -688,6 +730,7 @@ end;
 function TDelphi4Docker.ZipEdit(const AArchiveFileName: string;
   const AEdit: TEdit): ITask;
 begin
+  Log(Format('Compressing folder "%s".', [AEdit.Text]));
   Result := UpdateEdit(AEdit, procedure() begin
     var LFileName := TPath.Combine(TCommonPath.GetBundleFolder(), AArchiveFileName);
     ZipDirectoryContents(
@@ -699,6 +742,7 @@ begin
       Exit;
 
     AddToPack(LFileName);
+    Log(Format('Folder "%s" has been added to bundle.', [AEdit.Text]));
   end);
 end;
 
@@ -802,11 +846,14 @@ begin
           var LZip := TZipFile.Create();
           try
             LZip.Open(TCommonPath.GetBundleFile(), TZipMode.zmRead);
+            Log('Extracting registry file.');
             LZip.Extract(EMBT_REGISTRY_FILE_NAME, TCommonPath.GetBundleFolder());
+            Log('Extracting definitions file.');
             LZip.Extract(DEFS_FILE_NAME, TCommonPath.GetBundleFolder());
 
             //Execute registry
             {$IFDEF LINUX}
+            Log('Importing registry.');
             TLinuxOperation.ExecuteEmbarcaderoRegistry(TCommonPath.GetRegistryFile());
             {$ENDIF LINUX}
           finally
@@ -836,10 +883,12 @@ begin
         var LZip := TZipFile.Create();
         try
           LZip.Open(TCommonPath.GetBundleFile(), TZipMode.zmRead);
+          Log('Looking for samples...');
           if LZip.IndexOf('Samples.zip') > -1 then begin
             LTask := UnzipEdit(TCommonPath.GetBundleFile(), 'Samples.zip', edtTestProjectsDestFolder);
             LTasks := LTasks + [LTask];
-          end;
+          end else
+            Log('Samples not available.');
           LZip.Close();
         finally
           LZip.Free();
@@ -850,6 +899,11 @@ begin
         if (TStatus.Cancelled in FStatus) then
           Exit;
 
+        //Create the msbuild config script - this is a shortcut to rsvars
+        Log('Creating msbuild config. script.');
+        CreateMSBuildConfigScript();
+
+        Log('All done.');
         TThread.Synchronize(TThread.Current, procedure() begin
           ShowMessage('Environment has been set up.');
         end);
@@ -860,6 +914,7 @@ end;
 function TDelphi4Docker.UnzipEdit(const AZipFileName, AArchiveFileName: string;
   const AEdit: TEdit): ITask;
 begin
+  Log(Format('Extracting folder "%s".', [AArchiveFileName]));
   Result := UpdateEdit(AEdit, procedure() begin
     UnzipFileContents(
       AZipFileName,
