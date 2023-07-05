@@ -7,8 +7,8 @@ https://github.com/lmbelo/delphi4docker/assets/8376898/e8d4ba26-4542-4f2b-86df-f
 
 # Requirements
 - Valid Embarcadero licence for Delphi which includes Delphi Community Edition (CE)
-- A fresh Windows Virtual Machine (VM)
-- A fresh Ubuntu 20.04 VM
+- A fresh Windows 10 virtual machine
+- A fresh Ubuntu 20.04 virtual machine
 - Consider having 150GB HDD space available for each VM
 
 # Caveats
