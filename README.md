@@ -31,18 +31,13 @@ https://github.com/lmbelo/delphi4docker/assets/8376898/e8d4ba26-4542-4f2b-86df-f
 - Remove everything that is IDE only related to [size down](https://github.com/lmbelo/delphi4docker/wiki/Sizing-down-your-bundle) your bundle.
 - Clone or download the repository: https://github.com/lmbelo/delphi4docker 
 - Launch the app > delphi4dockersrv.exe app and use the Pack option
-  - - If you didn’t use the default options during the Delphi installation process, please set up accordingly. Whereas, if you used default options, you can go ahead and use the Pack option.
+  - If you didn’t use the default options during the Delphi installation process, please set up accordingly. Whereas, if you used default options, you can go ahead and use the Pack option.
 
-<p align="center" width="100%">
-	<img width="299" alt="image" src="https://github.com/lmbelo/delphi4docker/assets/8376898/d509e900-b7be-4f29-9356-925a61b1165d">
-</p>
+<img src="https://github.com/lmbelo/delphi4docker/assets/17174106/40b627db-5c39-473e-8af3-80a4eefd3097" width="700">
 
 - It will now pack the Delphi environment and bundle it up to a single file and make it ready to send to the Ubuntu host machine.
 - When done, a message will display.
-
-<p align="center" width="100%">
-	<img width="319" alt="image" src="https://github.com/lmbelo/delphi4docker/assets/8376898/d56f8a9d-fe5c-4398-a6a5-fc32580a6117">
-</p>
+<img src="https://github.com/lmbelo/delphi4docker/assets/17174106/e545c661-c815-4c7b-8655-8f6921c179a0" width="400">
 
 # Setting up for Ubuntu 20.04 VM
 ## Installing WINE
