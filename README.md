@@ -200,7 +200,7 @@ As can be seen, you get the Hello World message from Docker, and the Docker inst
 - An important step is to copy the host wine prefix that you’ve set up using the above steps. This step is already provided as part of the dockerfiles under the “**Copy host wine**” section. So you need not edit this.
 - After that run the **docker > PersonalDockerbuild** using:
 ``` shell
-$ bash PersonalDockerBuild
+$ ./PersonalDockerBuild
 ```
 - Above step will clone the wine from your Ubuntu machine and create a docker image with Delphi compiler for you. This step will take a long time and require a lot of disk space.
 - Please keep in mind that you can’t distribute the above-created docker image publicly because of license limitations. You can use it for your personal uses as you have the necessary Emabarcadero license.
