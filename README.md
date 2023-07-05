@@ -166,3 +166,8 @@ After that run the docker > PersonalDockerbuild using:
 	$ bash PersonalDockerBuild
 Above step will clone the wine from your Ubuntu machine and create a docker image with Delphi compiler for you. This step will take a long time and require a lot of disk space.
 Please keep in mind that you can’t distribute the above-created docker image publicly because of license limitations. You can use it for your personal uses as you have the necessary Emabarcadero license.
+
+
+
+https://github.com/lmbelo/delphi4docker/assets/8376898/5870602b-c7da-4a9f-9d9c-115cb7b430d1
+
