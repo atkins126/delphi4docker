@@ -41,6 +41,9 @@ https://github.com/lmbelo/delphi4docker/assets/8376898/e8d4ba26-4542-4f2b-86df-f
 
 # Setting up for Ubuntu 20.04 VM
 ## Installing WINE
+
+**Note: You can simplify this process running the setup_wine.sh script**
+
 - Verify 64-bit architecture. The following command should respond with "amd64".
 ``` shell
 $ dpkg --print-architecture
