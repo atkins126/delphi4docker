@@ -1,7 +1,7 @@
 # delphi4docker
 Step-by-step guide to create your own Docker container to compile Delphi projects
 
-Host Delphi on a Docker container and compile Delphi projects for Windows, Mac, Linux, Android and iOS (Not Tested) from the container.
+Host Delphi on a Docker container and compile Delphi projects for Windows, Mac, Linux, Android and iOS (Not Tested) from the container
 
 https://github.com/lmbelo/delphi4docker/assets/8376898/e8d4ba26-4542-4f2b-86df-f2b40a73f2a3
 
@@ -12,11 +12,11 @@ https://github.com/lmbelo/delphi4docker/assets/8376898/e8d4ba26-4542-4f2b-86df-f
 - Consider having 150GB HDD space available for each VM
 
 # Caveats
-- Use the same user name in your VMs as your docker container. I strongly recomend you to use root as user.
+- Use the same user name in your VMs as your docker container. I strongly recomend you to use root as user
   	* In your Windows machine, create a user called root
   	* In your Ubuntu machine, run everything as root
 - If you’re using Mac and Parallels for managing VMs, use the option “Isolate Windows from Mac”
-- Tested using Delphi 11.3 only. For the previous version of Delphi, it might not work because Eclipse Adoptium folder doesn’t exist.
+- Tested using Delphi 11.3 only. For the previous version of Delphi, it might not work because Eclipse Adoptium folder doesn’t exist
 
 # Setting up for Windows VM
 - Install Delphi as a regular installation (Uncheck the option “Install for all users” and use the default destination folder)
@@ -27,17 +27,17 @@ https://github.com/lmbelo/delphi4docker/assets/8376898/e8d4ba26-4542-4f2b-86df-f
 
 - Install all the required getit packages and SDKs
 - Install all available patches
-- Remove everything that is IDE only related to [size down](https://github.com/lmbelo/delphi4docker/wiki/Sizing-down-your-bundle) your bundle.
+- Remove everything that is IDE only related to [size down](https://github.com/lmbelo/delphi4docker/wiki/Sizing-down-your-bundle) your bundle
 - Clone or download the repository: https://github.com/lmbelo/delphi4docker 
 - Launch the app > delphi4dockersrv.exe app and use the Pack option
-  - If you didn’t use the default options during the Delphi installation process, please set up accordingly. Whereas, if you used default options, you can go ahead and use the Pack option.
+  - If you didn’t use the default options during the Delphi installation process, please set up accordingly. Whereas, if you used default options, you can go ahead and use the Pack option
 
 <p align="center" width="100%">
 	<img width="298" alt="image" src="https://github.com/lmbelo/delphi4docker/assets/8376898/c1946ed0-a30a-47be-9519-285fb30deda3">
 </p>
 
-- It will now pack the Delphi environment and bundle it up to a single file and make it ready to send to the Ubuntu host machine.
-- When done, a message will display.
+- It will now pack the Delphi environment and bundle it up to a single file and make it ready to send to the Ubuntu host machine
+- When done, a message will display
 
 <p align="center" width="100%">
 	<img width="319" alt="image" src="https://github.com/lmbelo/delphi4docker/assets/8376898/292ba013-1fc0-46cb-9133-c74335e51554">
@@ -48,15 +48,15 @@ https://github.com/lmbelo/delphi4docker/assets/8376898/e8d4ba26-4542-4f2b-86df-f
 
 **Note: You can simplify this process running the setup_wine.sh script**
 
-- Verify 64-bit architecture. The following command should respond with "amd64".
+- Verify 64-bit architecture. The following command should respond with "amd64"
 ``` shell
 $ dpkg --print-architecture
 ```
-- See if 32-bit architecture is installed. The following command should respond with "i386".
+- See if 32-bit architecture is installed. The following command should respond with "i386"
 ``` shell
 $ dpkg --print-foreign-architectures
 ```
-- If "i386" is not displayed, execute the following.
+- If "i386" is not displayed, execute the following
 ``` shell
 $ sudo dpkg --add-architecture i386
 ```
@@ -119,15 +119,15 @@ $ wine winecfg
 - Clone or download the repository: https://github.com/lmbelo/delphi4docker
 - Run delphi4dockercli 
   - Setup the delphi4dockercli options
-  - If you’ve followed the prescribed default settings in the above steps, you just need to set up the “Host Addr” option.
-  - Goto Window VM and click on “Send” button in the delphi4dockersrv application.
-  - Now press on the Receive button in the delphi4dockercli in Ubuntu VM.
+  - If you’ve followed the prescribed default settings in the above steps, you just need to set up the “Host Addr” option
+  - Goto Window VM and click on “Send” button in the delphi4dockersrv application
+  - Now press on the Receive button in the delphi4dockercli in Ubuntu VM
 
 <p align="center" width="100%">
 	<img width="447" alt="image" src="https://github.com/lmbelo/delphi4docker/assets/8376898/a780760f-df43-416d-8a76-0770061f56d0">
 </p>
 
-  - Wait until the operation finish and press on the “Upack and Setup” button.
+  - Wait until the operation finish and press on the “Upack and Setup” button
 
 <p align="center" width="100%">
 	<img width="350" alt="image" src="https://github.com/lmbelo/delphi4docker/assets/8376898/8c32b594-db9d-4a6c-90fe-b18f532e7bcb">
@@ -150,43 +150,43 @@ $ wine winecfg
 
 ## Installing and Configuring Docker
 
-Before creating the docker container, we will install the Docker to our Ubuntu 20.04 system, which is available by default in the Ubuntu repository.
+Before creating the docker container, we will install the Docker to our Ubuntu 20.04 system, which is available by default in the Ubuntu repository
 
 **Note: You can simplify this process running the setup_docker.sh script**
 
-Update all packages list on the Ubuntu repository and install Docker using the apt command below.
+Update all packages list on the Ubuntu repository and install Docker using the apt command below
 ``` shell
 $ sudo apt update
 $ sudo apt install docker.io
 ```
-Once all installation is completed, start the Docker service and add it to the system boot.
+Once all installation is completed, start the Docker service and add it to the system boot
 ``` shell
 $ systemctl start docker
 $ systemctl enable docker
 ```
-Now check the Docker service using the command below.
+Now check the Docker service using the command below
 ``` shell
 $ systemctl status docker
 ```
-The Docker service is up and running on Ubuntu 22.04.
+The Docker service is up and running on Ubuntu 22.04
 
-Next, run the docker command below to ensure the installation is correct.
+Next, run the docker command below to ensure the installation is correct
 ```shell
 $ docker run hello-world
 ```
 Below is the result you will get.
 ``` shell
 Hello from Docker!
-This message shows that your installation appears to be working correctly.
+This message shows that your installation appears to be working correctly
 
 To generate this message, Docker took the following steps:
- 1. The Docker client contacted the Docker daemon.
- 2. The Docker daemon pulled the "hello-world" image from the Docker Hub.
+ 1. The Docker client contacted the Docker daemon
+ 2. The Docker daemon pulled the "hello-world" image from the Docker Hub
 	(amd64)
  3. The Docker daemon created a new container from that image which runs the
-	executable that produces the output you are currently reading.
+	executable that produces the output you are currently reading
  4. The Docker daemon streamed that output to the Docker client, which sent it
-	to your terminal.
+	to your terminal
 
 To try something more ambitious, you can run an Ubuntu container with:
  $ docker run -it ubuntu bash
@@ -198,24 +198,24 @@ For more examples and ideas, visit:
  https://docs.docker.com/get-started/
 ```
 
-As can be seen, you get the Hello World message from Docker, and the Docker installation on Ubuntu 20.04 has been completed successfully.
+As can be seen, you get the Hello World message from Docker, and the Docker installation on Ubuntu 20.04 has been completed successfully
 
 # Create a Docker Image using the Delphi Bundle
 
-- Open the **docker > PersonalDockerfile** from the cloned delphi4docker repo. Edit the file as needed and configure your Docker image.
-- You’ll start with the base image as you can see in the “**Download Delphi base image**” section.
-- An important step is to copy the host wine prefix that you’ve set up using the above steps. This step is already provided as part of the dockerfiles under the “**Copy host wine**” section. So you need not edit this.
+- Open the **docker > PersonalDockerfile** from the cloned delphi4docker repo. Edit the file as needed and configure your Docker image
+- You’ll start with the base image as you can see in the “**Download Delphi base image**” section
+- An important step is to copy the host wine prefix that you’ve set up using the above steps. This step is already provided as part of the dockerfiles under the “**Copy host wine**” section. So you need not edit this
 - After that run the **docker > PersonalDockerbuild** using:
 ``` shell
 $ ./PersonalDockerBuild
 ```
-- Above step will clone the wine from your Ubuntu machine and create a docker image with Delphi compiler for you. This step will take a long time and require a lot of disk space.
+- Above step will clone the wine from your Ubuntu machine and create a docker image with Delphi compiler for you. This step will take a long time and require a lot of disk space
 
 <p align="center" width="100%">
 	<img width="504" alt="image" src="https://github.com/lmbelo/delphi4docker/assets/8376898/d68eedd4-902c-4b2d-9542-2b82104c1f69">
 </p>
   
-- Please keep in mind that you can’t distribute the above-created docker image publicly because of license limitations. You can use it for your personal uses as you have the necessary Emabarcadero license.
+- Please keep in mind that you can’t distribute the above-created docker image publicly because of license limitations. You can use it for your personal uses as you have the necessary Emabarcadero license
 
 
 
