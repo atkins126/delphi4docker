@@ -20,10 +20,7 @@ https://github.com/lmbelo/delphi4docker/assets/8376898/e8d4ba26-4542-4f2b-86df-f
 
 # Setting up for Windows VM
 - Install Delphi as a regular installation (Uncheck the option “Install for all users” and use the default destination folder)
-
-<p align="center" width="100%">
-	<img src="https://github.com/lmbelo/delphi4docker/assets/8376898/2b02af26-1007-410f-857a-cd7847f72202" width="460">
-</p>
+<img src="https://github.com/lmbelo/delphi4docker/assets/8376898/2b02af26-1007-410f-857a-cd7847f72202" width="460">
 
 - Install all the required getit packages and SDKs
 - Install all available patches
@@ -31,17 +28,11 @@ https://github.com/lmbelo/delphi4docker/assets/8376898/e8d4ba26-4542-4f2b-86df-f
 - Clone or download the repository: https://github.com/lmbelo/delphi4docker 
 - Launch the app > delphi4dockersrv.exe app and use the Pack option
   - If you didn’t use the default options during the Delphi installation process, please set up accordingly. Whereas, if you used default options, you can go ahead and use the Pack option
-
-<p align="center" width="100%">
-	<img width="298" alt="image" src="https://github.com/lmbelo/delphi4docker/assets/8376898/c1946ed0-a30a-47be-9519-285fb30deda3">
-</p>
+<img width="350" alt="image" src="https://github.com/lmbelo/delphi4docker/assets/8376898/c1946ed0-a30a-47be-9519-285fb30deda3">
 
 - It will now pack the Delphi environment and bundle it up to a single file and make it ready to send to the Ubuntu host machine
 - When done, a message will display
-
-<p align="center" width="100%">
-	<img width="319" alt="image" src="https://github.com/lmbelo/delphi4docker/assets/8376898/292ba013-1fc0-46cb-9133-c74335e51554">
-</p>
+<img width="350" alt="image" src="https://github.com/lmbelo/delphi4docker/assets/8376898/292ba013-1fc0-46cb-9133-c74335e51554">
 
 # Setting up for Ubuntu 20.04 VM
 ## Installing WINE
@@ -82,10 +73,7 @@ $ sudo apt update
 $ sudo apt install --install-recommends winehq-stable
 ```
 - When installing wine, as you get this screen, click on “**Cancel**” button
-
-<p align="center" width="100%">
-	<img width="182" alt="image" src="https://github.com/lmbelo/delphi4docker/assets/8376898/30cc3bed-59fd-487e-b36b-aee0fc52b34d">
-</p>
+<img width="260" alt="image" src="https://github.com/lmbelo/delphi4docker/assets/8376898/30cc3bed-59fd-487e-b36b-aee0fc52b34d">
   
 - Verify the installation succeeded
 ``` shell
@@ -111,10 +99,7 @@ $ wine winecfg
 ```
 - Open Windows using
 `-> Applications tab -> Windows version -> Windows 10`
-
-<p align="center" width="100%">
-	<img width="299" alt="image" src="https://github.com/lmbelo/delphi4docker/assets/8376898/a2126380-d783-41e1-b9b2-ef809c4c8d67">
-</p>
+<img width="299" alt="image" src="https://github.com/lmbelo/delphi4docker/assets/8376898/a2126380-d783-41e1-b9b2-ef809c4c8d67">
 
 - Clone or download the repository: https://github.com/lmbelo/delphi4docker
 - Run delphi4dockercli 
@@ -122,16 +107,10 @@ $ wine winecfg
   - If you’ve followed the prescribed default settings in the above steps, you just need to set up the “Host Addr” option
   - Goto Window VM and click on “Send” button in the delphi4dockersrv application
   - Now press on the Receive button in the delphi4dockercli in Ubuntu VM
-
-<p align="center" width="100%">
-	<img width="447" alt="image" src="https://github.com/lmbelo/delphi4docker/assets/8376898/a780760f-df43-416d-8a76-0770061f56d0">
-</p>
+  <img width="570" alt="image" src="https://github.com/lmbelo/delphi4docker/assets/8376898/a780760f-df43-416d-8a76-0770061f56d0">
 
   - Wait until the operation finish and press on the “Upack and Setup” button
-
-<p align="center" width="100%">
-	<img width="350" alt="image" src="https://github.com/lmbelo/delphi4docker/assets/8376898/8c32b594-db9d-4a6c-90fe-b18f532e7bcb">
-</p>
+  <img width="350" alt="image" src="https://github.com/lmbelo/delphi4docker/assets/8376898/8c32b594-db9d-4a6c-90fe-b18f532e7bcb">
 
 ## Testing your environment
 
@@ -143,10 +122,7 @@ $ wine winecfg
 - **Recommendation:** Place your test projects into the path\to\Embarcadero\Studio\Projects\ folder
 - You can configure the “Test Projects Folder” when bundling your Delphi environment using your Windows VM using the delphi4dockersrv application
 - Finally you can see the result of your test project compilation as you can observe in the image below
-
-<p align="center" width="100%">
-	<img width="617" alt="image" src="https://github.com/lmbelo/delphi4docker/assets/8376898/acc4d7e6-86a1-421a-b0f5-fdf44ea6d21c">
-</p>
+<img width="750" alt="image" src="https://github.com/lmbelo/delphi4docker/assets/8376898/acc4d7e6-86a1-421a-b0f5-fdf44ea6d21c">
 
 ## Installing and Configuring Docker
 
@@ -210,10 +186,7 @@ As can be seen, you get the Hello World message from Docker, and the Docker inst
 $ ./PersonalDockerBuild
 ```
 - Above step will clone the wine from your Ubuntu machine and create a docker image with Delphi compiler for you. This step will take a long time and require a lot of disk space
-
-<p align="center" width="100%">
-	<img width="504" alt="image" src="https://github.com/lmbelo/delphi4docker/assets/8376898/d68eedd4-902c-4b2d-9542-2b82104c1f69">
-</p>
+<img width="504" alt="image" src="https://github.com/lmbelo/delphi4docker/assets/8376898/d68eedd4-902c-4b2d-9542-2b82104c1f69">
   
 - Please keep in mind that you can’t distribute the above-created docker image publicly because of license limitations. You can use it for your personal uses as you have the necessary Emabarcadero license
 
