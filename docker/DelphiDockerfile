@@ -1,0 +1,29 @@
+#Download Ubuntu image. We decided to use version 20.04
+#Let wine install its minimal requirements, it will result in a smaller image
+FROM ubuntu:20.04
+
+#Labeling
+LABEL maintainer="lucas.belo@live.com"
+LABEL version="0.0.1-alpha"
+LABEL description="This is the base image for Delphi compilers"
+
+#Set args
+ARG CONTAINER_TZ=America
+
+#Set env vars
+ENV TZ="$CONTAINER_TZ"
+
+#Configure tzdata
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
+
+#Update everything before installing wine
+RUN apt update
+RUN apt install wget -y
+
+#Install wine
+RUN dpkg --add-architecture i386
+RUN mkdir -pm755 /etc/apt/keyrings
+RUN wget -O /etc/apt/keyrings/winehq-archive.key https://dl.winehq.org/wine-builds/winehq.key
+RUN wget -NP /etc/apt/sources.list.d/ https://dl.winehq.org/wine-builds/ubuntu/dists/focal/winehq-focal.sources
+RUN apt update
+RUN apt install --install-recommends winehq-stable -y
