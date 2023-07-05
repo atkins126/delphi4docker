@@ -20,11 +20,7 @@ https://github.com/lmbelo/delphi4docker/assets/8376898/e8d4ba26-4542-4f2b-86df-f
 
 # Setting up for Windows VM
 - Install Delphi as a regular installation (Uncheck the option “Install for all users” and use the default destination folder)
-
-<p align="center" width="100%">
-	<img width="464" alt="image" src="https://github.com/lmbelo/delphi4docker/assets/8376898/2b02af26-1007-410f-857a-cd7847f72202">
-</p>
-
+<img src="https://github.com/lmbelo/delphi4docker/assets/8376898/2b02af26-1007-410f-857a-cd7847f72202" width="460">
 
 - Install all the required getit packages and SDKs
 - Install all available patches
