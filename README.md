@@ -122,11 +122,16 @@ $ wine winecfg
   - If you’ve followed the prescribed default settings in the above steps, you just need to set up the “Host Addr” option.
   - Goto Window VM and click on “Send” button in the delphi4dockersrv application.
   - Now press on the Receive button in the delphi4dockercli in Ubuntu VM.
+
+<p align="center" width="100%">
+	<img width="447" alt="image" src="https://github.com/lmbelo/delphi4docker/assets/8376898/a780760f-df43-416d-8a76-0770061f56d0">
+</p>
+
   - Wait until the operation finish and press on the “Upack and Setup” button.
 
-
-
-
+<p align="center" width="100%">
+	<img width="350" alt="image" src="https://github.com/lmbelo/delphi4docker/assets/8376898/8c32b594-db9d-4a6c-90fe-b18f532e7bcb">
+</p>
 
 ## Testing your environment
 
@@ -134,15 +139,14 @@ $ wine winecfg
 
 - Enter the windows command prompt using the wine cmd command
 - Run the path\to\rsvars.bat as mentioned in the below image. This will configure the MSBuild
-- You can now compile the Test project using the msbuild as mentioned in the below image
+- You can now compile the Test project using the msbuild
 - **Recommendation:** Place your test projects into the path\to\Embarcadero\Studio\Projects\ folder
-
-
-
 - You can configure the “Test Projects Folder” when bundling your Delphi environment using your Windows VM using the delphi4dockersrv application
 - Finally you can see the result of your test project compilation as you can observe in the image below
 
-
+<p align="center" width="100%">
+	<img width="617" alt="image" src="https://github.com/lmbelo/delphi4docker/assets/8376898/acc4d7e6-86a1-421a-b0f5-fdf44ea6d21c">
+</p>
 
 ## Installing and Configuring Docker
 
