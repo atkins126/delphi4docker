@@ -6,10 +6,14 @@ LABEL maintainer="lucas.belo@live.com"
 LABEL version="0.0.1-alpha"
 LABEL description="This is a personal Docker image for Delphi compilers"
 
-#ARG USER=delphi
+ARG USER=root
 #ARG UID=1000
 #ARG GID=1000
 #ARG PW=delphi
+ARG WINE_PARENT_DIR="/root"
+
+#Avoid debug messages in console
+ENV WINEDEBUG -all
 
 #Specifying password (unsafe)
 #RUN useradd -m ${USER} --uid=${UID} && echo "${USER}:${PW}" | \
@@ -25,4 +29,10 @@ LABEL description="This is a personal Docker image for Delphi compilers"
 #WORKDIR /home/${USER}
 
 #Copy host wine
-ADD hostwine.tar.gz /root/.wine
+ADD hostwine.tar.gz $WINE_PARENT_DIR
+
+#Set Delphi's project dir as workdir
+WORKDIR "$WINE_PARENT_DIR/.wine/drive_c/users/$USER/Documents/Embarcadero/Studio/Projects"
+
+#Run wine directly
+ENTRYPOINT wine cmd
