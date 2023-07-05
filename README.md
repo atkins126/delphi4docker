@@ -15,6 +15,7 @@ https://github.com/lmbelo/delphi4docker/assets/8376898/e8d4ba26-4542-4f2b-86df-f
 - Use the same user name in your VMs as your docker container. I strongly recomend you to use root as user
   	* In your Windows machine, create a user called root
   	* In your Ubuntu machine, run everything as root
+  	* When running your container, set user as root
 - If you’re using Mac and Parallels for managing VMs, use the option “Isolate Windows from Mac”
 - Tested using Delphi 11.3 only. For the previous version of Delphi, it might not work because Eclipse Adoptium folder doesn’t exist
 
