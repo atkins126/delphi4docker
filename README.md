@@ -25,9 +25,15 @@ https://github.com/lmbelo/delphi4docker/assets/8376898/e8d4ba26-4542-4f2b-86df-f
 - Remove everything that is IDE only related to [size down](https://github.com/lmbelo/delphi4docker/wiki/Sizing-down-your-bundle) your bundle.
 - Clone or download the repository: https://github.com/lmbelo/delphi4docker 
 - Launch the app > delphi4dockersrv.exe app and use the Pack option
-- If you didn’t use the default options during the Delphi installation process, please set up accordingly. Whereas, if you used default options, you can go ahead and use the Pack option.
+  - - If you didn’t use the default options during the Delphi installation process, please set up accordingly. Whereas, if you used default options, you can go ahead and use the Pack option.
+
+![image](https://github.com/lmbelo/delphi4docker/assets/17174106/40b627db-5c39-473e-8af3-80a4eefd3097)
+
 - It will now pack the Delphi environment and bundle it up to a single file and make it ready to send to the Ubuntu host machine.
 - When done, a message will display.
+
+![image](https://github.com/lmbelo/delphi4docker/assets/17174106/3f5afbfe-3d8d-4587-bda1-7a4b13e16355)
+
 
 
 # Setting up for Ubuntu 20.04 VM
