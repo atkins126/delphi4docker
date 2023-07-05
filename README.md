@@ -81,6 +81,12 @@ $ sudo apt update
 ``` shell
 $ sudo apt install --install-recommends winehq-stable
 ```
+- When installing wine, as you get this screen, click on “**Cancel**” button
+
+<p align="center" width="100%">
+	<img width="182" alt="image" src="https://github.com/lmbelo/delphi4docker/assets/8376898/30cc3bed-59fd-487e-b36b-aee0fc52b34d">
+</p>
+  
 - Verify the installation succeeded
 ``` shell
 $ wine --version
@@ -95,19 +101,10 @@ $ wine clock
 ``` shell
 $ sudo apt-get install winetricks -y
 ```
-- When installing dotnet, as you get this screen, click on “**Cancel**” button
 ``` shell
 $ winetricks dotnet40
 $ winetricks dotnet45
 ```
-
-
-
-
-
-
-
-
 - Configure Wine to Windows 10
 ``` shell
 $ wine winecfg
@@ -115,7 +112,9 @@ $ wine winecfg
 - Open Windows using
 `-> Applications tab -> Windows version -> Windows 10`
 
-
+<p align="center" width="100%">
+	<img width="299" alt="image" src="https://github.com/lmbelo/delphi4docker/assets/8376898/a2126380-d783-41e1-b9b2-ef809c4c8d67">
+</p>
 
 - Clone or download the repository: https://github.com/lmbelo/delphi4docker
 - Run delphi4dockercli 
