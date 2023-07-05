@@ -22,7 +22,7 @@ https://github.com/lmbelo/delphi4docker/assets/8376898/e8d4ba26-4542-4f2b-86df-f
 - Install Delphi as a regular installation (Uncheck the option “Install for all users” and use the default destination folder)
 - Install all the required getit packages and SDKs
 - Install all available patches
-- Remove everything that is IDE only related to [size down]([https://www.google.com](https://github.com/lmbelo/delphi4docker/wiki/Sizing-down-your-bundle)) your bundle.
+- Remove everything that is IDE only related to [size down](https://github.com/lmbelo/delphi4docker/wiki/Sizing-down-your-bundle) your bundle.
 - Clone or download the repository: https://github.com/lmbelo/delphi4docker 
 - Launch the app > delphi4dockersrv.exe app and use the Pack option
 - If you didn’t use the default options during the Delphi installation process, please set up accordingly. Whereas, if you used default options, you can go ahead and use the Pack option.
