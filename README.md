@@ -145,6 +145,8 @@ $ wine winecfg
 
 Before creating the docker container, we will install the Docker to our Ubuntu 20.04 system, which is available by default in the Ubuntu repository.
 
+**Note: You can simplify this process running the setup_docker.sh script**
+
 Update all packages list on the Ubuntu repository and install Docker using the apt command below.
 ``` shell
 $ sudo apt update
