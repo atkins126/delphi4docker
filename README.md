@@ -3,6 +3,8 @@ Step-by-step guide to create your own Docker container to compile Delphi project
 
 Host Delphi on a Docker container and compile Delphi projects for Windows, Mac, Linux, Android and iOS (Not Tested) from the container.
 
+https://github.com/lmbelo/delphi4docker/assets/8376898/e8d4ba26-4542-4f2b-86df-f2b40a73f2a3
+
 # Requirements
 - Valid Embarcadero licence for Delphi which includes Delphi Community Edition (CE)
 - A fresh Windows Virtual Machine (VM)
@@ -187,5 +189,5 @@ $ bash PersonalDockerBuild
 
 
 
-https://github.com/lmbelo/delphi4docker/assets/8376898/e8d4ba26-4542-4f2b-86df-f2b40a73f2a3
+
 
