@@ -12,13 +12,40 @@ https://github.com/lmbelo/delphi4docker/assets/8376898/e8d4ba26-4542-4f2b-86df-f
 - Consider having 150GB HDD space available for each VM
 
 # Caveats
-- Use the same user name for the VM (I’m using delphi as user name)
+- Use the same user name in your VMs as your docker container. I strongly recomend you to use root as user.
+  	* In your Windows machine, create a user called root
+  	* In your Ubuntu machine, run everything as root
 - If you’re using Mac and Parallels for managing VMs, use the option “Isolate Windows from Mac”
 - Tested using Delphi 11.3 only. For the previous version of Delphi, it might not work because Eclipse Adoptium folder doesn’t exist.
 
 # Setting up for Windows VM
 - Install Delphi as a regular installation (Uncheck the option “Install for all users” and use the default destination folder)
 - Install all the required getit packages and SDKs
+- Install all available patches
+- Remove everything that is IDE only related to size down your bundle. This is what I have removed on mine:
+
+	- Root (..\Embarcadero\Studio\22.0)
+	    - unins000*
+	    - EMSServer
+	    - LivePreview
+	    - PAServer
+	    - *.bpl (not linking with run-time packages)
+	- \Bin folder
+	    - de folder
+	    - fr folder
+	    - ja folder
+	    - ios folder
+	    - bds folder
+	    - windows folder (lldb things)
+	    - *.fr
+	    - *.de
+	    - *.ja
+	- \Lib folder
+	    - Removed all debug folders (release compile only)
+	    - Removed all iOS related folders
+	- \Patch folder
+	    - Removed the patch_backup folder (patch backup)
+  
 - Clone or download the repository: https://github.com/lmbelo/delphi4docker 
 - Launch the app > delphi4dockersrv.exe app and use the Pack option
 - If you didn’t use the default options during the Delphi installation process, please set up accordingly. Whereas, if you used default options, you can go ahead and use the Pack option.
