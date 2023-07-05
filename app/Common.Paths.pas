@@ -12,6 +12,7 @@ type
     class function GetBundleFile: string; static;
     class function GetRegistryFile: string; static;
     class function GetDefsFile(): string; static;
+    class function GetLogFile(): string; static;
     //Validators
     class procedure Check(const APath: string); static;
   end;
@@ -21,6 +22,7 @@ type
     function EmbarcaderoPath(): string;
     function EmbarcaderoProgramDataPath(): string;
     function EmbarcaderoUserDocumentsPath(): string;
+    function EmbarcaderoUserProjectsPath(): string;
     function EmbarcaderoPublicDocumentsPath(): string;
     function EmbarcaderoUserAppDataRoamingPath(): string;
     function EclipseAdoptiumPath(): string;
@@ -46,6 +48,7 @@ type
     function EmbarcaderoPath(): string;
     function EmbarcaderoProgramDataPath(): string;
     function EmbarcaderoUserDocumentsPath(): string;
+    function EmbarcaderoUserProjectsPath(): string;
     function EmbarcaderoPublicDocumentsPath(): string;
     function EmbarcaderoUserAppDataRoamingPath(): string;
     function EclipseAdoptiumPath(): string;
@@ -62,12 +65,14 @@ type
     function GetWineDriveCFolder(): string;
     function GetWineUsersDirectory(): string;
     function GetWineUserDirectory(): string;
+    function GetWineUserDocumentsDirectory(): string;
   public
     constructor Create(const AWinePrefix, AWineUserName: string; AHostUserName: string = '');
 
     function EmbarcaderoPath(): string;
     function EmbarcaderoProgramDataPath(): string;
     function EmbarcaderoUserDocumentsPath(): string;
+    function EmbarcaderoUserProjectsPath(): string;
     function EmbarcaderoPublicDocumentsPath(): string;
     function EmbarcaderoUserAppDataRoamingPath(): string;
     function EclipseAdoptiumPath(): string;
@@ -96,12 +101,17 @@ uses
 const
   PACK_ZIP_FILE_NAME = 'delphipack.zip';
   PACK_FOLDER_NAME = 'delphipack';
+  LOG_FILE_NAME = 'log.txt';
 
 { TCommonInfo }
 
 class function TCommonInfo.GetCurrentUserName: string;
 begin
   Result := GetEnvironmentVariable('USERNAME');
+  {$IFDEF CLIENT}
+  if Result.IsEmpty then
+    Result := 'root';
+  {$ENDIF CLIENT}
 end;
 
 class function TCommonInfo.GetIpAddress: string;
@@ -145,6 +155,11 @@ end;
 class function TCommonPath.GetDefsFile: string;
 begin
   Result := TPath.Combine(TCommonPath.GetBundleFolder(), DEFS_FILE_NAME);
+end;
+
+class function TCommonPath.GetLogFile: string;
+begin
+  Result := TPath.Combine(ExtractFilePath(TPath.GetFullPath(ParamStr(0))), LOG_FILE_NAME);
 end;
 
 class function TCommonPath.GetRegistryFile: string;
@@ -201,6 +216,17 @@ begin
   Result := Format('C:\Users\%s\Documents\Embarcadero', [LUserName]);
 end;
 
+function TLocalEnvironmentPath.EmbarcaderoUserProjectsPath: string;
+begin
+  Result :=
+    TPath.Combine(
+      TPath.Combine(
+        EmbarcaderoUserDocumentsPath(),
+        'Studio'),
+      'Projects'
+    );
+end;
+
 function TLocalEnvironmentPath.EclipseAdoptiumPath: string;
 begin
   Result := 'C:\Program Files\Eclipse Adoptium';
@@ -215,14 +241,21 @@ end;
 
 function TWineHostEnvironmentPath.GetWineFolder: string;
 begin
-  var LHostUserName := FHostUserName;
-  if LHostUserName.IsEmpty then
-    LHostUserName := TCommonInfo.GetCurrentUserName();
+  var LWineUserName := FWineUserName;
+  if LWineUserName.IsEmpty then
+    LWineUserName := TCommonInfo.GetCurrentUserName();
+
+  if LWineUserName.IsEmpty then
+    LWineUserName := 'root';
+
+  ///root/$(wineprefix)
+  if (LWineUserName = 'root') then
+    Exit(TPath.Combine(TPath.DirectorySeparatorChar + 'root', FWinePrefix));
 
   ///home/$(user)/$(wineprefix)
   Result :=
     TPath.Combine(
-      TPath.Combine(TPath.DirectorySeparatorChar + 'home', LHostUserName),
+      TPath.Combine(TPath.DirectorySeparatorChar + 'home', LWineUserName),
     FWinePrefix);
 end;
 
@@ -232,16 +265,22 @@ begin
   Result := TPath.Combine(GetWineFolder(), 'drive_c');
 end;
 
+function TWineHostEnvironmentPath.GetWineUsersDirectory: string;
+begin
+  ///home/$(user)/$(wineprefix)/drive_c/users
+  Result := TPath.Combine(GetWineDriveCFolder(), 'users');
+end;
+
 function TWineHostEnvironmentPath.GetWineUserDirectory: string;
 begin
   ///home/$(user)/$(wineprefix)/drive_c/users/$(wineuser)
   Result := TPath.Combine(GetWineUsersDirectory(), FWineUserName);
 end;
 
-function TWineHostEnvironmentPath.GetWineUsersDirectory: string;
+function TWineHostEnvironmentPath.GetWineUserDocumentsDirectory: string;
 begin
-  ///home/$(user)/$(wineprefix)/drive_c/users
-  Result := TPath.Combine(GetWineDriveCFolder(), 'users');
+  ///home/$(user)/$(wineprefix)/drive_c/users/$(wineuser)/Documents
+  Result := TPath.Combine(GetWineUserDirectory(), 'Documents');
 end;
 
 constructor TWineHostEnvironmentPath.Create(const AWinePrefix,
@@ -305,12 +344,19 @@ end;
 function TWineHostEnvironmentPath.EmbarcaderoUserDocumentsPath: string;
 begin
   ///home/$(user)/$(wineprefix)/drive_c/users/$(wineuser)/Documents/Embarcadero
+  Result := TPath.Combine(GetWineUserDocumentsDirectory(), 'Embarcadero');
+end;
+
+function TWineHostEnvironmentPath.EmbarcaderoUserProjectsPath: string;
+begin
+  ///home/$(user)/$(wineprefix)/drive_c/users/$(wineuser)/Documents/Embarcadero/Studio/Projects
   Result :=
     TPath.Combine(
       TPath.Combine(
-        GetWineUserDirectory(),
-        'Documents'),
-    'Embarcadero');
+        EmbarcaderoUserDocumentsPath(),
+        'Studio'),
+      'Projects'
+    );
 end;
 
 function TWineHostEnvironmentPath.EclipseAdoptiumPath: string;
