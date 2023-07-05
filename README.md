@@ -6,7 +6,7 @@ Host Delphi on a Docker container and compile Delphi projects for Windows, Mac, 
 https://github.com/lmbelo/delphi4docker/assets/8376898/e8d4ba26-4542-4f2b-86df-f2b40a73f2a3
 
 # Requirements
-- Valid Embarcadero licence for Delphi which includes Delphi Community Edition (CE)
+- Valid Embarcadero licence for Delphi
 - A fresh Windows 10 virtual machine
 - A fresh Ubuntu 20.04 virtual machine
 - Consider having 150GB HDD space available for each VM
