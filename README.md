@@ -97,45 +97,58 @@ $ wine winecfg
 
 - Clone or download the repository: https://github.com/lmbelo/delphi4docker
 - Run delphi4dockercli 
-Setup the delphi4dockercli options
-If you’ve followed the prescribed default settings in the above steps, you just need to set up the “Host Addr” option.
-Goto Window VM and click on “Send” button in the delphi4dockersrv application.
-Now press on the Receive button in the delphi4dockercli in Ubuntu VM.
-Wait until the operation finish and press on the “Upack and Setup” button.
+  - Setup the delphi4dockercli options
+  - If you’ve followed the prescribed default settings in the above steps, you just need to set up the “Host Addr” option.
+  - Goto Window VM and click on “Send” button in the delphi4dockersrv application.
+  - Now press on the Receive button in the delphi4dockercli in Ubuntu VM.
+  - Wait until the operation finish and press on the “Upack and Setup” button.
 
 
 
 
 
-Testing your environment
-Compiling a Test Project
-Enter the windows command prompt using the wine cmd command
-Run the path\to\rsvars.bat as mentioned in the below image. This will configure the MSBuild
-You can now compile the Test project using the msbuild as mentioned in the below image
-Recommendation: Place your test projects into the path\to\Embarcadero\Studio\Projects\ folder
+## Testing your environment
+
+### Compiling a Test Project
+
+- Enter the windows command prompt using the wine cmd command
+- Run the path\to\rsvars.bat as mentioned in the below image. This will configure the MSBuild
+- You can now compile the Test project using the msbuild as mentioned in the below image
+- **Recommendation:** Place your test projects into the path\to\Embarcadero\Studio\Projects\ folder
 
 
 
-You can configure the “Test Projects Folder” when bundling your Delphi environment using your Windows VM using the delphi4dockersrv application
-Finally you can see the result of your test project compilation as you can observe in the image below
+- You can configure the “Test Projects Folder” when bundling your Delphi environment using your Windows VM using the delphi4dockersrv application
+- Finally you can see the result of your test project compilation as you can observe in the image below
 
 
 
-Installing and Configuring Docker
+## Installing and Configuring Docker
+
 Before creating the docker container, we will install the Docker to our Ubuntu 20.04 system, which is available by default in the Ubuntu repository.
+
 Update all packages list on the Ubuntu repository and install Docker using the apt command below.
+``` shell
 $ sudo apt update
 $ sudo apt install docker.io
+```
 Once all installation is completed, start the Docker service and add it to the system boot.
+``` shell
 $ systemctl start docker
 $ systemctl enable docker
+```
 Now check the Docker service using the command below.
+``` shell
 $ systemctl status docker
+```
 The Docker service is up and running on Ubuntu 22.04.
 
 Next, run the docker command below to ensure the installation is correct.
+```shell
 $ docker run hello-world
+```
 Below is the result you will get.
+``` shell
 Hello from Docker!
 This message shows that your installation appears to be working correctly.
 
@@ -156,16 +169,22 @@ Share images, automate workflows, and more with a free Docker ID:
 
 For more examples and ideas, visit:
  https://docs.docker.com/get-started/
-As can be seen, you get the Hello World message from Docker, and the Docker installation on Ubuntu 20.04 has been completed successfully.
-Create a Docker Image using the Delphi Bundle
+```
 
-Open the docker > PersonalDockerfile from the cloned delphi4docker repo. Edit the file as needed and configure your Docker image.
-You’ll start with the base image as you can see in the “Download Delphi base image” section.
-An important step is to copy the host wine prefix that you’ve set up using the above steps. This step is already provided as part of the dockerfiles under “Copy host wine” section. So you need not edit this.
-After that run the docker > PersonalDockerbuild using:
-	$ bash PersonalDockerBuild
-Above step will clone the wine from your Ubuntu machine and create a docker image with Delphi compiler for you. This step will take a long time and require a lot of disk space.
-Please keep in mind that you can’t distribute the above-created docker image publicly because of license limitations. You can use it for your personal uses as you have the necessary Emabarcadero license.
+As can be seen, you get the Hello World message from Docker, and the Docker installation on Ubuntu 20.04 has been completed successfully.
+
+# Create a Docker Image using the Delphi Bundle
+
+- Open the **docker > PersonalDockerfile** from the cloned delphi4docker repo. Edit the file as needed and configure your Docker image.
+- You’ll start with the base image as you can see in the “**Download Delphi base image**” section.
+- An important step is to copy the host wine prefix that you’ve set up using the above steps. This step is already provided as part of the dockerfiles under the “**Copy host wine**” section. So you need not edit this.
+- After that run the **docker > PersonalDockerbuild** using:
+``` shell
+$ bash PersonalDockerBuild
+```
+- Above step will clone the wine from your Ubuntu machine and create a docker image with Delphi compiler for you. This step will take a long time and require a lot of disk space.
+- Please keep in mind that you can’t distribute the above-created docker image publicly because of license limitations. You can use it for your personal uses as you have the necessary Emabarcadero license.
+
 
 
 https://github.com/lmbelo/delphi4docker/assets/8376898/e8d4ba26-4542-4f2b-86df-f2b40a73f2a3
