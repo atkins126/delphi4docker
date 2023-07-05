@@ -210,6 +210,11 @@ As can be seen, you get the Hello World message from Docker, and the Docker inst
 $ ./PersonalDockerBuild
 ```
 - Above step will clone the wine from your Ubuntu machine and create a docker image with Delphi compiler for you. This step will take a long time and require a lot of disk space.
+
+<p align="center" width="100%">
+	<img width="504" alt="image" src="https://github.com/lmbelo/delphi4docker/assets/8376898/d68eedd4-902c-4b2d-9542-2b82104c1f69">
+</p>
+  
 - Please keep in mind that you can’t distribute the above-created docker image publicly because of license limitations. You can use it for your personal uses as you have the necessary Emabarcadero license.
 
 
