@@ -19,13 +19,14 @@ jobs:
         runs-on: ubuntu-20.04
         container:
           image: lmbelo/d4d:0.0.1-alpha
+          options: --user root
           credentials:
             username: lmbelo
             password: ${{ secrets.docker_hub_password}}
         steps:
+            - name: Checkout repository
+              uses: actions/checkout@v2
             - name: super-step
               shell: bash
               run: |
-                # Whatever commands you want to run here using the container with your
-                # new Docker image at ghcr.io!
-                echo "--This is running in my custom Docker image--"
+                echo "$(ls -a)"
