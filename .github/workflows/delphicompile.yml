@@ -87,6 +87,10 @@ jobs:
           - name: Push Docker image
             run: |
               docker pull lmbelo/d4d:0.0.1-alpha
+          - name: Free Space
+            run: |
+              echo "Free space:"
+              df -h
         #container:
         #  image: lmbelo/d4d:0.0.1-alpha
         #  options: --user root
