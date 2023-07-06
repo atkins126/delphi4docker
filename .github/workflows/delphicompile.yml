@@ -37,30 +37,30 @@ jobs:
           #    remove-haskell: 'true'
           #    remove-codeql: 'true'
           #    remove-docker-images: 'true'                          
-          - name: Cleaner
-            run: |
-              echo "=============================================================================="
-              echo "Freeing up disk space on CI system"
-              echo "=============================================================================="
+          #- name: Cleaner
+          #  run: |
+          #    echo "=============================================================================="
+          #    echo "Freeing up disk space on CI system"
+          #    echo "=============================================================================="
 
-              echo "Listing 100 largest packages"
-              dpkg-query -Wf '${Installed-Size}\t${Package}\n' | sort -n | tail -n 100
-              df -h
-              echo "Removing large packages"          
-              sudo apt-get remove -y '^dotnet-.*'
-              sudo apt-get remove -y '^llvm-.*'
-              sudo apt-get remove -y 'php.*'
-              sudo apt-get remove -y 'temurin.*'
-              sudo apt-get remove -y 'mono*'    
-              sudo apt-get remove -y 'aspnet*'       
-              sudo apt-get remove -y azure-cli google-cloud-sdk google-chrome-stable firefox powershell
-              sudo apt-get autoremove -y
-              sudo apt-get clean
-              df -h
-              echo "Removing large directories"
+          #    echo "Listing 100 largest packages"
+          #    dpkg-query -Wf '${Installed-Size}\t${Package}\n' | sort -n | tail -n 100
+          #    df -h
+          #    echo "Removing large packages"          
+          #    sudo apt-get remove -y '^dotnet-.*'
+          #    sudo apt-get remove -y '^llvm-.*'
+          #    sudo apt-get remove -y 'php.*'
+          #    sudo apt-get remove -y 'temurin.*'
+          #    sudo apt-get remove -y 'mono*'    
+          #    sudo apt-get remove -y 'aspnet*'       
+          #    sudo apt-get remove -y azure-cli google-cloud-sdk google-chrome-stable firefox powershell
+          #    sudo apt-get autoremove -y
+          #    sudo apt-get clean
+          #    df -h
+          #    echo "Removing large directories"
               # deleting 15GB
-              rm -rf /usr/share/dotnet/
-              df -h
+          #    rm -rf /usr/share/dotnet/
+          #    df -h
           - name: Free Disk Space (Ubuntu)
             uses: jlumbroso/free-disk-space@main
             with:
