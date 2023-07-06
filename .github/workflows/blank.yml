@@ -1,0 +1,25 @@
+# This is a basic workflow to help you get started with Actions
+
+name: DockerDelphiCompile
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push or pull request events but only for the "main" branch
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# Jobs section
+jobs:
+    # The job that will use the container image you just pushed to ghcr.io
+    super-job:
+        runs-on: ubuntu-20.04
+        container:
+          image: lmbelo/d4d:0.0.1-alpha
+          credentials:
+            username: lmbelo
+            password: ${{ secrets.docker_hub_password}}
