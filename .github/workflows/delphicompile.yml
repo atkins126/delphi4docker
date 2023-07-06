@@ -16,7 +16,7 @@ on:
 # Jobs section
 jobs:
     freeupspace:
-        name: Build my artifact
+        name: Free up space
         runs-on: ubuntu-latest
         steps:
           - name: Before
@@ -47,8 +47,7 @@ jobs:
               sudo apt-get remove -y '^llvm-.*'
               sudo apt-get remove -y 'php.*'
               sudo apt-get remove -y 'temurin.*'
-              sudo apt-get remove -y 'mono*'
-              sudo apt-get remove -y 'perl*'
+              sudo apt-get remove -y 'mono*'    
               sudo apt-get remove -y 'aspnet*'       
               sudo apt-get remove -y azure-cli google-cloud-sdk google-chrome-stable firefox powershell
               sudo apt-get autoremove -y
