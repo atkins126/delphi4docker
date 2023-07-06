@@ -32,8 +32,7 @@ jobs:
           #    remove-android: 'true'
           #    remove-haskell: 'true'
           #    remove-codeql: 'true'
-          #    remove-docker-images: 'true'
-          
+          #    remove-docker-images: 'true'                          
           - name: Cleaner
             run: |
               echo "=============================================================================="
@@ -48,7 +47,13 @@ jobs:
               sudo apt-get remove -y '^llvm-.*'
               sudo apt-get remove -y 'php.*'
               sudo apt-get remove -y 'temurin.*'
-              sudo apt-get remove -y mono-utils azure-cli google-cloud-sdk google-chrome-stable firefox powershell mono-devel
+              sudo apt-get remove -y 'mono*'
+              sudo apt-get remove -y 'cpp*'
+              sudo apt-get remove -y 'perl*'
+              sudo apt-get remove -y 'aspnet*'
+              sudo apt-get remove -y 'clang*'
+              sudo apt-get remove -y 'g++*'              
+              sudo apt-get remove -y azure-cli google-cloud-sdk google-chrome-stable firefox powershell
               sudo apt-get autoremove -y
               sudo apt-get clean
               df -h
@@ -56,7 +61,12 @@ jobs:
               # deleting 15GB
               rm -rf /usr/share/dotnet/
               df -h
-          
+          - name: Free Disk Space (Ubuntu)
+            uses: jlumbroso/free-disk-space@main
+            with:
+              # this might remove tools that are actually needed,
+              # when set to "true" but frees about 6 GB
+              tool-cache: true
           - name: After
             run: |
               echo "Free space:"
