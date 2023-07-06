@@ -48,11 +48,8 @@ jobs:
               sudo apt-get remove -y 'php.*'
               sudo apt-get remove -y 'temurin.*'
               sudo apt-get remove -y 'mono*'
-              sudo apt-get remove -y 'cpp*'
               sudo apt-get remove -y 'perl*'
-              sudo apt-get remove -y 'aspnet*'
-              sudo apt-get remove -y 'clang*'
-              sudo apt-get remove -y 'g++*'              
+              sudo apt-get remove -y 'aspnet*'       
               sudo apt-get remove -y azure-cli google-cloud-sdk google-chrome-stable firefox powershell
               sudo apt-get autoremove -y
               sudo apt-get clean
