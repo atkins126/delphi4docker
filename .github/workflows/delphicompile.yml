@@ -15,8 +15,7 @@ on:
 
 # Jobs section
 jobs:
-    # The job that will use the container image you just pushed to ghcr.io
-    super-job:
+    build:
         runs-on: ubuntu-20.04
         container:
           image: lmbelo/d4d:0.0.1-alpha
