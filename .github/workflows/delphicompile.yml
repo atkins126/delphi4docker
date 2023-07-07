@@ -19,7 +19,7 @@ jobs:
         runs-on: ubuntu-20.04
         #needs: [freeupspace]
         steps:
-          - name: Free Disk Space (Ubuntu)
+          - name: Free Disk Space
             uses: jlumbroso/free-disk-space@main
             with:
               # this might remove tools that are actually needed,
@@ -36,16 +36,3 @@ jobs:
               pwd
               docker pull lmbelo/d4d:0.0.1-alpha
               docker run --rm -it d4d
-        #container:
-        #  image: lmbelo/d4d:0.0.1-alpha
-        #  options: --user root
-        #  credentials:
-        #    username: lmbelo
-        #    password: ${{ secrets.docker_hub_password}}
-        #steps:
-        #    - name: Checkout repository
-        #      uses: actions/checkout@v2
-        #    - name: super-step
-        #      shell: bash
-        #      run: |
-        #        echo "$(ls -a)"
