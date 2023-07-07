@@ -38,9 +38,9 @@ jobs:
           - name: Run Docker container
             run: |
               cat > $(pwd)/test/compile.bat <<EOF       
-              call ..\msbuildconfig.bat
-              msbuild TestApp1\TestApp1.dproj /t:Clean /t:Build /p:Config=Release /p:Platform=Win32
-              msbuild TestApp1\TestApp1.dproj /t:Clean /t:Build /p:Config=Release /p:Platform=Win64
+              call msbuildconfig.bat
+              msbuild Shared\TestApp1\TestApp1.dproj /t:Clean /t:Build /p:Config=Release /p:Platform=Win32
+              msbuild Shared\TestApp1\TestApp1.dproj /t:Clean /t:Build /p:Config=Release /p:Platform=Win64
               EOF
             
               ls -R
