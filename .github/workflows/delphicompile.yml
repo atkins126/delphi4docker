@@ -39,9 +39,9 @@ jobs:
             run: |
               pwd
               ls -a
-              docker run --rm \
-                         -v $(pwd)/test/TestApp1:/root/.wine/drive_c/users/root/Documents/Embarcadero/Studio/Projects/Shared \                     
-                         -d lmbelo/d4d:0.0.1-alpha
+              docker run --detach \
+                         -v $(pwd)/test/TestApp1:/root/.wine/drive_c/users/root/Documents/Embarcadero/Studio/Projects/Shared \                                               
+                         lmbelo/d4d:0.0.1-alpha
               cat <<EOF | docker exec -i lmbelo/d4d:0.0.1-alpha sh
               wine cmd
               dir
