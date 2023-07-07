@@ -40,3 +40,4 @@ jobs:
               pwd
               ls -a
               docker run --rm -v $(pwd)/test:/root/.wine/drive_c/users/root/Documents/Embarcadero/Studio/Projects/Shared -i lmbelo/d4d:0.0.1-alpha
+              dir
