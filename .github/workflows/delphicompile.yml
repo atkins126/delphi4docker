@@ -43,7 +43,7 @@ jobs:
               msbuild TestApp1.dproj /t:Clean /t:Build /p:Config=Release /p:Platform=Win64
               EOF
             
-              ls -a
+              ls -R
             
               docker run -d -v $(pwd)/test/TestApp1:/root/.wine/drive_c/users/root/Documents/Embarcadero/Studio/Projects/Shared --name d4d lmbelo/d4d:0.0.1-alpha
               docker exec -i d4d "wine cmd /C dir Shared /C Shared\compile.bat"
