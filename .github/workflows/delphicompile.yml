@@ -37,7 +37,8 @@ jobs:
               docker pull lmbelo/d4d:0.0.1-alpha
           - name: Run Docker container
             run: |
-              cat > $(pwd)/test/TestApp1/compile.bat <<EOF            
+              cat > $(pwd)/test/TestApp1/compile.bat <<EOF       
+              call ..\msbuildconfig.bat
               msbuild TestApp1.dproj /t:Clean /t:Build /p:Config=Release /p:Platform=Win32
               msbuild TestApp1.dproj /t:Clean /t:Build /p:Config=Release /p:Platform=Win64
               EOF
@@ -45,6 +46,6 @@ jobs:
               ls -a
             
               docker run -d -v $(pwd)/test/TestApp1:/root/.wine/drive_c/users/root/Documents/Embarcadero/Studio/Projects/Shared --name d4d lmbelo/d4d:0.0.1-alpha
-              docker exec -i d4d "wine cmd /C Shared /C msbuildconfig.bat /C Shared\compile.bat"
+              docker exec -i d4d "wine cmd /C dir Shared /C Shared\compile.bat"
               
               ls -a
