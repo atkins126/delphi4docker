@@ -37,6 +37,6 @@ jobs:
               docker pull lmbelo/d4d:0.0.1-alpha
           - name: Run Docker container
             run: |
-              pwd
-              ls -a
               docker run -d -v $(pwd)/test/TestApp1:/root/.wine/drive_c/users/root/Documents/Embarcadero/Studio/Projects/Shared --name d4d lmbelo/d4d:0.0.1-alpha
+              docker exec -i d4d sh
+              dir
