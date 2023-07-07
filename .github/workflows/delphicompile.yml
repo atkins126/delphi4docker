@@ -30,6 +30,7 @@ jobs:
             with:
               username: ${{ secrets.DOCKERHUB_USERNAME }}
               password: ${{ secrets.DOCKERHUB_TOKEN }}
+              registry: gcr.io
               image: lmbelo/d4d:0.0.1-alpha
               options: -v ${{ github.workspace }}:/root/.wine/drive_c/users/root/Documents/Embarcadero/Studio/Projects/Shared
               shell: cmd
