@@ -14,60 +14,8 @@ on:
   workflow_dispatch:
 
 # Jobs section
-jobs:
-    #freeupspace:
-        #name: Free up space
-        #runs-on: ubuntu-latest
-        #steps:
-          #- name: Before
-          #  run: |
-          #    echo "Free space:"
-          #    df -h
-          #- name: Maximize build space
-          #  uses: easimon/maximize-build-space@master
-          #  with:
-          #    root-reserve-mb: 512
-          #    swap-size-mb: 1024
-          #    remove-dotnet: 'true'
-          #    remove-android: 'true'
-          #    remove-haskell: 'true'
-          #    remove-codeql: 'true'
-          #    remove-docker-images: 'true'                          
-          #- name: Cleaner
-          #  run: |
-          #    echo "=============================================================================="
-          #    echo "Freeing up disk space on CI system"
-          #    echo "=============================================================================="
-
-          #    echo "Listing 100 largest packages"
-          #    dpkg-query -Wf '${Installed-Size}\t${Package}\n' | sort -n | tail -n 100
-          #    df -h
-          #    echo "Removing large packages"          
-          #    sudo apt-get remove -y '^dotnet-.*'
-          #    sudo apt-get remove -y '^llvm-.*'
-          #    sudo apt-get remove -y 'php.*'
-          #    sudo apt-get remove -y 'temurin.*'
-          #    sudo apt-get remove -y 'mono*'    
-          #    sudo apt-get remove -y 'aspnet*'       
-          #    sudo apt-get remove -y azure-cli google-cloud-sdk google-chrome-stable firefox powershell
-          #    sudo apt-get autoremove -y
-          #    sudo apt-get clean
-          #    df -h
-          #    echo "Removing large directories"
-              # deleting 15GB
-          #    rm -rf /usr/share/dotnet/
-          #    df -h
-          #- name: Free Disk Space (Ubuntu)
-          #  uses: jlumbroso/free-disk-space@main
-          #  with:
-              # this might remove tools that are actually needed,
-              # when set to "true" but frees about 6 GB
-          #    tool-cache: true
-          #- name: After
-          #  run: |
-          #    echo "Free space:"
-          #    df -h
-    docker:
+jobs:    
+    delphi4docker:
         runs-on: ubuntu-20.04
         #needs: [freeupspace]
         steps:
@@ -82,18 +30,12 @@ jobs:
             with:
               username: ${{ secrets.DOCKERHUB_USERNAME }}
               password: ${{ secrets.DOCKERHUB_TOKEN }}
-              #logout: true
-          - name: Free Space
-            run: |
-              echo "Free space:"
-              df -h
+              logout: true
           - name: Push Docker image
             run: |
+              pwd
               docker pull lmbelo/d4d:0.0.1-alpha
-          - name: Free Space
-            run: |
-              echo "Free space:"
-              df -h
+              docker run --rm -it d4d
         #container:
         #  image: lmbelo/d4d:0.0.1-alpha
         #  options: --user root
