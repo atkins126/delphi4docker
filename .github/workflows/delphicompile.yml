@@ -35,4 +35,4 @@ jobs:
             run: |
               pwd
               docker pull lmbelo/d4d:0.0.1-alpha
-              docker run --rm -it d4d
+              docker run --rm -i d4d
