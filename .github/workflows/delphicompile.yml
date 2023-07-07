@@ -27,7 +27,7 @@ jobs:
           - name: Checkout main repo
             uses: actions/checkout@v2
           - name: Log the step container node version
-            uses: docker://node:12.14.1-alpine3.10
+            uses: docker://lmbelo/d4d:0.0.1-alpha
             with:
               username: ${{ secrets.DOCKERHUB_USERNAME }}
               password: ${{ secrets.DOCKERHUB_TOKEN }}
