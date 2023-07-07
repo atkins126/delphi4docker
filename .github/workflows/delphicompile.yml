@@ -16,8 +16,7 @@ on:
 # Jobs section
 jobs:    
     delphi4docker:
-        runs-on: ubuntu-20.04
-        #needs: [freeupspace]
+        runs-on: ubuntu-20.04      
         steps:
           - name: Free Disk Space
             uses: jlumbroso/free-disk-space@main
@@ -40,4 +39,4 @@ jobs:
             run: |
               pwd
               ls -a
-              docker run --rm -i d4d:0.0.1-alpha
+              docker run --rm -i lmbelo/d4d:0.0.1-alpha
