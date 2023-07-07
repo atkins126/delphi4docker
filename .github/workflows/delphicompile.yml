@@ -39,7 +39,7 @@ jobs:
             run: |
               pwd
               ls -a
-              docker run --detach -name d4d -v $(pwd)/test/TestApp1:/root/.wine/drive_c/users/root/Documents/Embarcadero/Studio/Projects/Shared lmbelo/d4d:0.0.1-alpha
+              docker run -d -v $(pwd)/test/TestApp1:/root/.wine/drive_c/users/root/Documents/Embarcadero/Studio/Projects/Shared --name d4d lmbelo/d4d:0.0.1-alpha
               cat <<EOF | docker exec -i d4d sh
               wine cmd
               dir
